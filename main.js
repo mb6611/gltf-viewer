@@ -16,6 +16,8 @@ loader.load( 'poly.glb', function ( gltf ) {
 
     // Add scene
     const scene = gltf.scene;
+    const scaleValue = 10;
+    scene.scale.set(scaleValue, scaleValue, scaleValue);
 
     // Light up the scene
     const ambientLight = new THREE.AmbientLight(0xffffff); // Specify the color of the light (white in this case)
@@ -72,7 +74,7 @@ loader.load( 'poly.glb', function ( gltf ) {
             let cameraDirectionZ = forwardDirection.z / magnitude;
 
 
-            let speed = 0.1;
+            let speed = 1;
 
             console.log("X", cameraDirectionX);
             console.log("Z", cameraDirectionZ);
