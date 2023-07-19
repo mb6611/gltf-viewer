@@ -3,6 +3,21 @@
 
 body {
     margin: 0;
+    background-color: #2C3531;
+    display: inline-flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    background-color: #2C3531;
 }
 
 .container {
@@ -13,7 +28,70 @@ body {
     height: 50px;
 }
 
+.GUI {
+    display: inline-flex;
+    height: 530px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFCB9A;
+}
+
+.file-viewer-container {
+    display: inline-flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 350px;
+}
+
+.file-viewer-padding {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas-viewer {
+    height: 100%;
+    border-radius: 15%;
+    /*border: solid 10px #116466;*/
+
+}
+
+.description-container {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #D9B08C;
+    width: 80%;
+    height: 80%;
+    border-radius: 40px;
+}
+
+.description-container h2 {
+    flex: 1;
+    text-align: center;
+    font-family: "Heebo", sans-serif;
+    font-size: xxx-large;
+    color: #2C3531;
+}
+
+.description-container p {
+    flex: 2;
+    text-align: center;
+    font-family: "Heebo", sans-serif;
+    font-weight: 700;
+    font-size: x-large;
+    color: #2C3531;
+}
+
+
 h1 {
     font-family: "Heebo", sans-serif;
     font-weight: 700;
+    font-size: xxx-large;
+    color: #CAC2B5;
 }

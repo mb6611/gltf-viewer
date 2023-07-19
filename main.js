@@ -7,10 +7,26 @@ const loader = new GLTFLoader();
 
 // Create renderer for window
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
+
+// Import CSS properties of file-viewer container
+let fileViewerCSS = document.querySelector('.file-viewer-padding');
+let style = getComputedStyle(fileViewerCSS);
+
+// Set aspect ratio of file-viewer
+
+const heightScale = 0.9;
+let height = heightScale * parseInt(style.height);
+const aspectRatio = 16 / 9;
+renderer.setSize( height * aspectRatio, height );
+
+// Set background and color space for file-viewer
 renderer.setClearColor(0xffffff);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-document.body.appendChild( renderer.domElement );
+
+// Add file-viewer to the file-viewer container
+document.getElementById("file-viewer").appendChild( renderer.domElement );
+renderer.domElement.id = "canvas-viewer";
+let canvasViewer = document.getElementById("file-viewer");
 
 loader.load( 'poly.glb', function ( gltf ) {
 
@@ -35,23 +51,35 @@ loader.load( 'poly.glb', function ( gltf ) {
     // Add orbital camera control
     const controls = new OrbitControls( camera, renderer.domElement );
 
-
     // Update camera angle
-    //controls.addEventListener( 'change'); // use if there is no animation loop
     controls.minDistance = 2;
     controls.maxDistance = 10;
     controls.target.set( 0, 0, 0 );
     controls.enableZoom = true;
-    //controls.autoRotate = true;
+    controls.autoRotate = true;
+
+    // Break out of default rotation upon clicking file-viewer
+    canvasViewer.addEventListener('click', () => {
+        controls.autoRotate = false;
+    })
 
     // Parse window size changes
     window.addEventListener( 'resize', onWindowResize );
     function onWindowResize() {
 
-        camera.aspect = window.innerWidth / window.innerHeight;
+        // Get dimensions of canvas for file-viewer
+        let fileViewerCSS = document.querySelector('.file-viewer-padding');
+        let style = getComputedStyle(fileViewerCSS);
+        height = heightScale * parseInt(style.height);
+        parseInt(style.width);
+
+        // Set camera aspect ratio
+        const aspectRatio = 16 / 9;
+        camera.aspect = aspectRatio;
         camera.updateProjectionMatrix();
 
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        // Render the canvas onto the container
+        renderer.setSize( height * aspectRatio, height);
         render();
     }
 
