@@ -28,7 +28,7 @@ document.getElementById("file-viewer").appendChild( renderer.domElement );
 renderer.domElement.id = "canvas-viewer";
 let canvasViewer = document.getElementById("file-viewer");
 
-loader.load( 'poly.glb', function ( gltf ) {
+loader.load( 'room.glb', function ( gltf ) {
 
     // Add scene
     const scene = gltf.scene;
